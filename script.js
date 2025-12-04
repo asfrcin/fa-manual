@@ -523,7 +523,47 @@ document.addEventListener('DOMContentLoaded', () => {
                     clearInterval(interval);
                     statusText.textContent = "Connection Established.";
                     setTimeout(() => {
-                        alert(`Connected!\n\nMessage sent from: ${userName}\nEmail: ${userPass}\n\n(This is a demo. In a real app, this would send an email.)`);
+                        // Create Retro Message Box
+                        const msgBox = document.createElement('div');
+                        msgBox.className = 'window';
+                        // Inline styles for centering within the connect container
+                        msgBox.style.position = 'absolute';
+                        msgBox.style.zIndex = '1000';
+                        msgBox.style.width = '300px';
+                        msgBox.style.left = '50%';
+                        msgBox.style.top = '50%';
+                        msgBox.style.transform = 'translate(-50%, -50%)';
+                        msgBox.style.boxShadow = '4px 4px 10px rgba(0,0,0,0.5)';
+
+                        msgBox.innerHTML = `
+                            <div class="window-title-bar">
+                                <img src="https://win98icons.alexmeub.com/icons/png/network_connection-0.png" alt="icon">
+                                <span>Connection Established</span>
+                                <div class="window-controls">
+                                    <button class="window-btn close-msg-btn">×</button>
+                                </div>
+                            </div>
+                            <div class="window-content" style="text-align: center; padding: 20px; background: #c0c0c0; border: none;">
+                                <img src="https://win98icons.alexmeub.com/icons/png/msg_information-0.png" style="margin-bottom: 10px;">
+                                <p style="margin-bottom: 5px;"><strong>Connected to Francis Amante</strong></p>
+                                <p style="margin-bottom: 15px; font-size: 0.9rem;">Message sent successfully.</p>
+                                <button class="sys-btn close-msg-btn" style="width: 80px;">OK</button>
+                            </div>
+                        `;
+
+                        // Ensure container is positioned
+                        const container = document.querySelector('.connect-container');
+                        if (getComputedStyle(container).position === 'static') {
+                            container.style.position = 'relative';
+                        }
+                        container.appendChild(msgBox);
+
+                        // Add close handlers
+                        msgBox.querySelectorAll('.close-msg-btn').forEach(btn => {
+                            btn.addEventListener('click', () => msgBox.remove());
+                        });
+
+                        // Reset Form
                         dialBtn.disabled = false;
                         progressBarFill.style.width = '0%';
                         progressBarContainer.style.display = 'none';
