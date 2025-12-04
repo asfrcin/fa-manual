@@ -454,7 +454,10 @@ p {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background: var(--bg-color);
+    background: #000000;
+    /* Start Black */
+    transition: background-color 1.5s ease;
+    /* Smooth transition */
 }
 
 .installer-wizard {

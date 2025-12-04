@@ -133,6 +133,12 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 // Scroll to expertise section on finish
                 const expertiseSection = document.getElementById('expertise');
+                const profileSection = document.querySelector('.profile-chapter');
+
+                if (profileSection) {
+                    profileSection.style.backgroundColor = '#008080'; // Transition to Teal
+                }
+
                 if (expertiseSection) {
                     expertiseSection.scrollIntoView({ behavior: 'smooth' });
                 }
