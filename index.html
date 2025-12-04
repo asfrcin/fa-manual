@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Francis Amante - The Professional Manual. A portfolio showcasing expertise in STEM, Information Technology, and Content Creation.">
+    <title>Francis Amante | The Manual</title>
+
+    <!-- Fonts: Inter (Sans) and JetBrains Mono (Mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="grid-overlay">
+        <!-- 12 column grid overlay for visual structure -->
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+    </div>
+
+    <!-- Header removed for bootloader aesthetic -->
+
+    <main class="manual-container">
+
+        <!-- CHAPTER 00: COVER -->
+        <section id="cover" class="chapter cover-chapter">
+            <div class="boot-screen">
+                <div class="boot-title-bar">
+                    <span>SITEMAP</span>
+                </div>
+
+                <ul class="boot-options">
+                    <li><a href="#profile" class="boot-link">Profile Logs</a></li>
+                    <li><a href="#expertise" class="boot-link">Expertise Data</a></li>
+                    <li><a href="#connect" class="boot-link">Connect Protocol</a></li>
+
+                    <li class="separator"></li>
+
+                    <li><a href="#profile" class="boot-link highlight">Start Portfolio Normally</a></li>
+                </ul>
+
+                <div class="boot-footer">
+                    <p>FRANCIS AMANTE © 2025</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHAPTER 01: PROFILE -->
+        <section id="profile" class="chapter profile-chapter">
+            <div class="installer-wizard">
+                <div class="wizard-title-bar">
+                    <span>Profile Setup Wizard</span>
+                </div>
+
+                <div class="wizard-content">
+                    <!-- Step 1 -->
+                    <div class="wizard-step active" data-step="1">
+                        <h3 class="wizard-step-title">Background</h3>
+                        <p><strong>I grew up refurbishing computers.</strong> Dinosaur parts. Clanking hard drives.
+                            Machines that had been running for a decade, each one different from the last. My parents
+                            would bring them home in job lots—destined for internet cafes across the ocean in the
+                            Philippines, where our family could put them to use.</p>
+                        <p>It took time. It took care. You had to understand what you were working with. That's where I
+                            learned what love looks like in practice.</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="wizard-step" data-step="2">
+                        <h3 class="wizard-step-title">The Pivot</h3>
+                        <p>But by the time we were ready, the world had moved on. Smartphones replaced desktop culture.
+                            DOTA became Mobile Legends. YouTube became an app. The plan had to change.</p>
+                        <p>So we pivoted: local ISP services in remote Philippine towns. Through optimized routing and
+                            thoughtful infrastructure, we proved that stable connectivity didn't require exceptional
+                            bandwidth—just better design. I helped build the proof of concept before family
+                            circumstances took me elsewhere, but the lesson stuck:</p>
+                        <div class="wizard-callout">
+                            <p>Technology is only as good as the problem it solves.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="wizard-step" data-step="3">
+                        <h3 class="wizard-step-title">The Thread</h3>
+                        <p>That's the thread connecting everything I do. IT infrastructure, content creation,
+                            STEM—they're not separate disciplines. They're tools that rely on each other. The technology
+                            needs to be communicated. The strategy needs to be tested. The engineering needs a
+                            competitive edge. It's all interconnected.</p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="wizard-step" data-step="4">
+                        <h3 class="wizard-step-title">Current Status</h3>
+                        <p>Right now, I'm at the <strong>University of Toronto</strong> studying Computer Science,
+                            exploring where LLMs, data centers, and economic uncertainty intersect. In unsettling times,
+                            there's opportunity—I want to understand how it appears. I'm also running a business in
+                            cabinetry with my brother, keeping my options open while I finish my degree.</p>
+                        <p>When I'm sold on an idea, I read everything I can about it. I want to feel competent before I
+                            share my work publicly. Outside of tech, I'm into photography—film photography,
+                            specifically. My first camera, a Nikon D3200, was passed down by a good friend who also got
+                            me into film with a Minox point-and-shoot and a Nikon EM (apparently one of Nikon's worst
+                            models, which made me love it more). I'm looking into Super 8 and 16mm cinematography next.
+                        </p>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="wizard-step" data-step="5">
+                        <h3 class="wizard-step-title">Installation Complete</h3>
+                        <p class="wizard-complete"><strong>I'm driven by love for the work.</strong> Always have been.
+                        </p>
+                        <p class="wizard-progress">Profile installation successful.</p>
+                    </div>
+                </div>
+
+                <div class="wizard-footer">
+                    <button class="wizard-btn wizard-back" id="wizardBack">← Back</button>
+                    <span class="wizard-step-indicator">Step <span id="currentStep">1</span> of 5</span>
+                    <button class="wizard-btn wizard-next" id="wizardNext">Next →</button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- CHAPTER 02: EXPERTISE -->
+        <section id="expertise" class="chapter">
+            <div class="chapter-header">
+                <span class="chapter-number">02</span>
+                <h2 class="chapter-title">EXPERTISE</h2>
+            </div>
+            <div class="chapter-content grid-layout">
+
+                <!-- IT SECTION -->
+                <article class="expertise-item">
+                    <div class="item-header">
+                        <span class="item-id">2.1</span>
+                        <h3>INFORMATION TECHNOLOGY</h3>
+                    </div>
+                    <div class="item-body">
+                        <p>Contracted by Manila-based <strong>Brucelink Telecommunications</strong> for a
+                            comprehensive
+                            study on the feasibility and optimization of public last-mile wireless connectivity
+                            in
+                            remote locations across the Philippines.</p>
+                        <ul class="item-details">
+                            <li>Spearheaded implementation of wireless connectivity (IEEE 802.11).</li>
+                            <li>Cloud integration of customer accounting systems.</li>
+                            <li>Database administration and mission-critical infrastructure maintenance.</li>
+                        </ul>
+                        <div class="impact-note">
+                            <span class="label">IMPACT:</span>
+                            <p>Advanced connectivity solutions in remote areas, aiding in connecting families
+                                and
+                                communities.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- CONTENT CREATION SECTION -->
+                <article class="expertise-item">
+                    <div class="item-header">
+                        <span class="item-id">2.2</span>
+                        <h3>CONTENT CREATION</h3>
+                    </div>
+                    <div class="item-body">
+                        <p>Immersed in digital culture, developing editing skills and producing video content
+                            since
+                            2018.</p>
+                        <ul class="timeline">
+                            <li><strong>2018:</strong> Promotional video for local parish.</li>
+                            <li><strong>2019:</strong> Documenting action and movement.</li>
+                            <li><strong>2020:</strong> Joined <strong>H4 Community</strong>. Managed student-led
+                                content
+                                campaigns on Instagram @h4community.</li>
+                        </ul>
+                        <div class="impact-note">
+                            <span class="label">FOCUS:</span>
+                            <p>Documenting communities in action and presenting ideas through visual
+                                storytelling.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- STEM SECTION -->
+                <article class="expertise-item">
+                    <div class="item-header">
+                        <span class="item-id">2.3</span>
+                        <h3>STEM & ROBOTICS</h3>
+                    </div>
+                    <div class="item-body">
+                        <p>Founding member of the <strong>St. André Robotics Club</strong> (since 2016).</p>
+                        <ul class="achievements">
+                            <li><strong>3rd Place:</strong> SkillsOntario LEGO® Robotics competition (2018).
+                                First medal
+                                for TCDSB.</li>
+                            <li><strong>2nd Place:</strong> Destination Imagination (Regionals & Provincials).
+                            </li>
+                            <li><strong>Top 20%:</strong> Global Finals competition in Knoxville, TN.</li>
+                        </ul>
+                        <div class="impact-note">
+                            <span class="label">COMMUNITY:</span>
+                            <p>Invested over <strong>300 hours</strong> mentoring at-risk students in Etobicoke,
+                                empowering them with STEM skillsets.</p>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- CHAPTER 03: CONNECT -->
+        <section id="connect" class="chapter">
+            <div class="chapter-header">
+                <span class="chapter-number">03</span>
+                <h2 class="chapter-title">CONNECT</h2>
+            </div>
+            <div class="chapter-content">
+                <div class="connect-grid">
+                    <a href="https://www.linkedin.com/in/francis-amante" target="_blank" class="connect-link">
+                        <span class="link-arrow">↗</span>
+                        <span class="link-text">LINKEDIN</span>
+                        <span class="link-sub">PROFESSIONAL PROFILE</span>
+                    </a>
+                    <a href="https://drive.google.com/file/d/1uEN-ndZNGDbQ13ZlBczmYxXWH_R--qg9/view?usp=sharing"
+                        target="_blank" class="connect-link">
+                        <span class="link-arrow">↓</span>
+                        <span class="link-text">RÉSUMÉ</span>
+                        <span class="link-sub">DOWNLOAD PDF</span>
+                    </a>
+                    <a href="mailto:contact@francisamante.com" class="connect-link">
+                        <span class="link-arrow">@</span>
+                        <span class="link-text">EMAIL</span>
+                        <span class="link-sub">GET IN TOUCH</span>
+                    </a>
+                </div>
+                <footer class="manual-footer">
+                    <p>© 2025 FRANCIS AMANTE. ALL RIGHTS RESERVED.</p>
+                    <p>DESIGNED AS A DIGITAL MANUAL.</p>
+                </footer>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- System Status Bar -->
+    <div class="status-bar">
+        <div class="status-left">
+            <span class="status-item">MANUAL v2.0</span>
+            <span class="status-separator">|</span>
+            <span class="status-item" id="currentSection">SECTION: 00</span>
+        </div>
+        <div class="status-right">
+            <span class="status-item" id="currentTime">00:00</span>
+            <span class="status-separator">|</span>
+            <span class="status-item">READY</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
