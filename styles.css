@@ -1230,6 +1230,94 @@ p {
     background: #c0c0c0;
     border: 2px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
+
+    /* Connect Hub Styles */
+    .connect-hub-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .hub-icon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        border: 1px dotted transparent;
+        cursor: pointer;
+    }
+
+    .hub-icon:hover {
+        border: 1px dotted #000;
+        background: rgba(0, 0, 128, 0.1);
+    }
+
+    .hub-icon img {
+        width: 32px;
+        height: 32px;
+        margin-bottom: 5px;
+    }
+
+    .hub-icon div {
+        font-size: 0.8rem;
+        font-family: var(--font-sans);
+    }
+
+    /* Dial-Up Window Styles (Adapted for Window Manager) */
+    .window .dial-up-body {
+        display: flex;
+        gap: 20px;
+        padding: 10px 20px;
+    }
+
+    .window .dial-icon-large img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .window .dial-form {
+        flex-grow: 1;
+    }
+
+    .window .dial-field {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .window .dial-field label {
+        width: 100px;
+        font-size: 0.9rem;
+    }
+
+    .window .dial-field input,
+    .window .dial-field textarea {
+        flex-grow: 1;
+        border: 2px solid;
+        border-color: #808080 #ffffff #ffffff #808080;
+        padding: 4px;
+        font-family: var(--font-sans);
+        font-size: 0.9rem;
+        outline: none;
+        resize: none;
+    }
+
+    .window .dial-status-area {
+        margin-top: 20px;
+        min-height: 50px;
+    }
+
+    .window .dial-up-footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        padding: 15px;
+        margin-top: 10px;
+    }
+
     padding: 3px;
     width: 450px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);

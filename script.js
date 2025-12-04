@@ -17,6 +17,19 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = link.getAttribute('href');
+
+            if (targetId === '#connect') {
+                // Special handling for Connect Protocol -> Open Desktop App
+                const expertiseSection = document.getElementById('expertise');
+                if (expertiseSection) {
+                    expertiseSection.scrollIntoView({ behavior: 'smooth' });
+                    setTimeout(() => {
+                        openWindow('connect-hub');
+                    }, 800); // Wait for scroll
+                }
+                return;
+            }
+
             const targetSection = document.querySelector(targetId);
 
             if (targetSection) {
@@ -364,6 +377,76 @@ document.addEventListener('DOMContentLoaded', () => {
                     </ul>
                 </div>
             `
+        },
+        'connect-hub': {
+            title: 'Connect Protocol',
+            icon: 'network_connection-0.png',
+            type: 'explorer',
+            width: '400px',
+            height: '300px',
+            body: `
+                <div class="connect-hub-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 20px; text-align: center;">
+                    <div class="hub-icon" onclick="window.open('https://www.linkedin.com/in/francis-amante', '_blank')" style="cursor: pointer;">
+                        <img src="https://win98icons.alexmeub.com/icons/png/users-1.png" style="width: 32px; height: 32px; margin-bottom: 5px;">
+                        <div style="font-size: 0.8rem;">LinkedIn</div>
+                    </div>
+                    <div class="hub-icon" onclick="window.open('/resume.pdf', '_blank')" style="cursor: pointer;">
+                        <img src="https://win98icons.alexmeub.com/icons/png/script-0.png" style="width: 32px; height: 32px; margin-bottom: 5px;">
+                        <div style="font-size: 0.8rem;">Resume</div>
+                    </div>
+                    <div class="hub-icon" onclick="openWindow('email-client')" style="cursor: pointer;">
+                        <img src="https://win98icons.alexmeub.com/icons/png/outlook_express-5.png" style="width: 32px; height: 32px; margin-bottom: 5px;">
+                        <div style="font-size: 0.8rem;">Email Me</div>
+                    </div>
+                </div>
+                <div style="padding: 10px; border-top: 1px solid #808080; margin-top: auto; font-size: 0.8rem; color: #444;">
+                    Select a protocol to initiate connection.
+                </div>
+            `
+        },
+        'email-client': {
+            title: 'Dial-Up Connection',
+            icon: 'modem-4.png',
+            type: 'sys-prop', // Reusing sys-prop for the gray dialog look
+            width: '450px',
+            height: 'auto',
+            body: `
+                <div class="dial-up-body" style="display: flex; gap: 20px; padding: 10px 20px;">
+                    <div class="dial-icon-large">
+                        <img src="https://win98icons.alexmeub.com/icons/png/modem-4.png" alt="Modem" style="width: 48px; height: 48px;">
+                    </div>
+                    <div class="dial-form" style="flex-grow: 1;">
+                        <p style="margin-bottom: 15px; font-size: 0.9rem;">User name and password are required to log on.</p>
+                        
+                        <div class="dial-field" style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <label for="userName" style="width: 100px; font-size: 0.9rem;">User name:</label>
+                            <input type="text" id="userName" placeholder="Your Name" style="flex-grow: 1; border: 2px solid; border-color: #808080 #ffffff #ffffff #808080; padding: 4px; font-family: var(--font-sans); font-size: 0.9rem; outline: none;">
+                        </div>
+                        
+                        <div class="dial-field" style="display: flex; align-items: center; margin-bottom: 10px;">
+                            <label for="userPass" style="width: 100px; font-size: 0.9rem;">Email:</label>
+                            <input type="email" id="userPass" placeholder="Your Email Address" style="flex-grow: 1; border: 2px solid; border-color: #808080 #ffffff #ffffff #808080; padding: 4px; font-family: var(--font-sans); font-size: 0.9rem; outline: none;">
+                        </div>
+
+                        <div class="dial-field" style="display: flex; align-items: flex-start; margin-bottom: 10px;">
+                            <label for="userMsg" style="width: 100px; font-size: 0.9rem; margin-top: 4px;">Message:</label>
+                            <textarea id="userMsg" rows="4" placeholder="Your Message..." style="flex-grow: 1; border: 2px solid; border-color: #808080 #ffffff #ffffff #808080; padding: 4px; font-family: var(--font-sans); font-size: 0.9rem; outline: none; resize: none;"></textarea>
+                        </div>
+
+                        <div class="dial-status-area" id="dialStatus" style="margin-top: 20px; min-height: 50px;">
+                            <div class="status-text" style="font-size: 0.9rem; margin-bottom: 5px;">Ready to connect.</div>
+                            <div class="progress-bar-container" style="height: 20px; border: 2px solid; border-color: #808080 #ffffff #ffffff #808080; background: #fff; padding: 2px; display: none;">
+                                <div class="progress-bar-fill" style="height: 100%; background: #000080; width: 0%; transition: width 0.2s;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dial-up-footer" style="display: flex; justify-content: flex-end; gap: 10px; padding: 15px; margin-top: 10px;">
+                    <button class="sys-btn" id="dialBtn" onclick="initiateDial()">Dial</button>
+                    <button class="sys-btn" onclick="this.closest('.window').remove()">Cancel</button>
+                    <button class="sys-btn">Properties</button>
+                </div>
+            `
         }
     };
 
@@ -488,100 +571,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.3 });
 
     if (windowManagerSection) windowObserver.observe(windowManagerSection);
-
-    // ==========================================
-    // CONNECT PROTOCOL (DIAL-UP) LOGIC
-    // ==========================================
-    const dialBtn = document.getElementById('dialBtn');
-    const dialStatus = document.getElementById('dialStatus');
-    const progressBarContainer = document.querySelector('.progress-bar-container');
-    const progressBarFill = document.querySelector('.progress-bar-fill');
-    const statusText = document.querySelector('.status-text');
-
-    if (dialBtn) {
-        dialBtn.addEventListener('click', () => {
-            const userName = document.getElementById('userName').value;
-            const userPass = document.getElementById('userPass').value;
-            const userMsg = document.getElementById('userMsg').value;
-
-            if (!userName || !userPass || !userMsg) {
-                alert('Please fill in all fields (Name, Email, Message).');
-                return;
-            }
-
-            // Start Dialing Sequence
-            dialBtn.disabled = true;
-            statusText.textContent = "Dialing...";
-            progressBarContainer.style.display = 'block';
-
-            // Simulation Steps
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += Math.random() * 10;
-                if (progress > 100) progress = 100;
-                progressBarFill.style.width = `${progress}%`;
-
-                if (progress > 30 && progress < 60) {
-                    statusText.textContent = "Verifying email address...";
-                } else if (progress > 60 && progress < 90) {
-                    statusText.textContent = "Sending data packets...";
-                } else if (progress >= 100) {
-                    clearInterval(interval);
-                    statusText.textContent = "Connection Established.";
-
-                    // Construct Mailto Link
-                    const safeSubject = encodeURIComponent(`Portfolio Inquiry from ${userName}`);
-                    const safeBody = encodeURIComponent(`Name: ${userName}\nEmail: ${userPass}\n\nMessage:\n${userMsg}`);
-                    const finalMailto = `mailto:hello@francisamante.com?subject=${safeSubject}&body=${safeBody}`;
-
-                    setTimeout(() => {
-                        // Open Mail Client
-                        window.location.href = finalMailto;
-
-                        // Create Retro Message Box
-                        const msgBox = document.createElement('div');
-                        msgBox.className = 'window';
-                        msgBox.style.position = 'absolute';
-                        msgBox.style.zIndex = '1000';
-                        msgBox.style.width = '300px';
-                        msgBox.style.left = '50%';
-                        msgBox.style.top = '50%';
-                        msgBox.style.transform = 'translate(-50%, -50%)';
-                        msgBox.style.boxShadow = '4px 4px 10px rgba(0,0,0,0.5)';
-
-                        msgBox.innerHTML = `
-                            <div class="window-title-bar">
-                                <img src="https://win98icons.alexmeub.com/icons/png/network_connection-0.png" alt="icon">
-                                <span>Connection Established</span>
-                                <div class="window-controls">
-                                    <button class="window-btn close-msg-btn">×</button>
-                                </div>
-                            </div>
-                            <div class="window-content" style="text-align: center; padding: 20px; background: #c0c0c0; border: none;">
-                                <img src="https://win98icons.alexmeub.com/icons/png/msg_information-0.png" style="margin-bottom: 10px;">
-                                <p style="margin-bottom: 5px;"><strong>Data Transmitted</strong></p>
-                                <p style="margin-bottom: 15px; font-size: 0.9rem;">Opening your default email client to complete the transmission.</p>
-                                <button class="sys-btn close-msg-btn" style="width: 80px;">OK</button>
-                            </div>
-                        `;
-
-                        const container = document.querySelector('.connect-container');
-                        if (getComputedStyle(container).position === 'static') {
-                            container.style.position = 'relative';
-                        }
-                        container.appendChild(msgBox);
-
-                        msgBox.querySelectorAll('.close-msg-btn').forEach(btn => {
-                            btn.addEventListener('click', () => msgBox.remove());
-                        });
-
-                        dialBtn.disabled = false;
-                        progressBarFill.style.width = '0%';
-                        progressBarContainer.style.display = 'none';
-                        statusText.textContent = "Ready to connect.";
-                    }, 500);
-                }
-            }, 200);
-        });
-    }
 });
