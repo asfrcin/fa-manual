@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
         dateElement.textContent = new Date().getFullYear();
     }
 
-    // 2. Smooth Scrolling for TOC Links
-    const tocLinks = document.querySelectorAll('.toc-link');
+    // 2. Smooth Scrolling for TOC Links and Boot Links
+    const tocLinks = document.querySelectorAll('.toc-link, .boot-link');
 
     tocLinks.forEach(link => {
         link.addEventListener('click', (e) => {
