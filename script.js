@@ -482,4 +482,55 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.3 });
 
     if (windowManagerSection) windowObserver.observe(windowManagerSection);
+
+    // ==========================================
+    // CONNECT PROTOCOL (DIAL-UP) LOGIC
+    // ==========================================
+    const dialBtn = document.getElementById('dialBtn');
+    const dialStatus = document.getElementById('dialStatus');
+    const progressBarContainer = document.querySelector('.progress-bar-container');
+    const progressBarFill = document.querySelector('.progress-bar-fill');
+    const statusText = document.querySelector('.status-text');
+
+    if (dialBtn) {
+        dialBtn.addEventListener('click', () => {
+            const userName = document.getElementById('userName').value;
+            const userPass = document.getElementById('userPass').value;
+            const userMsg = document.getElementById('userMsg').value;
+
+            if (!userName || !userPass) {
+                alert('User name and Password are required.');
+                return;
+            }
+
+            // Start Dialing Sequence
+            dialBtn.disabled = true;
+            statusText.textContent = "Dialing...";
+            progressBarContainer.style.display = 'block';
+
+            // Simulation Steps
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 10;
+                if (progress > 100) progress = 100;
+                progressBarFill.style.width = `${progress}%`;
+
+                if (progress > 30 && progress < 60) {
+                    statusText.textContent = "Verifying user name and password...";
+                } else if (progress > 60 && progress < 90) {
+                    statusText.textContent = "Registering your computer on the network...";
+                } else if (progress >= 100) {
+                    clearInterval(interval);
+                    statusText.textContent = "Connection Established.";
+                    setTimeout(() => {
+                        alert(`Connected!\n\nMessage sent from: ${userName}\nEmail: ${userPass}\n\n(This is a demo. In a real app, this would send an email.)`);
+                        dialBtn.disabled = false;
+                        progressBarFill.style.width = '0%';
+                        progressBarContainer.style.display = 'none';
+                        statusText.textContent = "Ready to connect.";
+                    }, 500);
+                }
+            }, 200);
+        });
+    }
 });

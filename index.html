@@ -176,13 +176,51 @@
             </div>
         </section>
 
-        <!-- CHAPTER 03: CONNECT -->
+        <!-- CHAPTER 03: CONNECT PROTOCOL -->
         <section id="connect" class="chapter">
-            <div class="chapter-header">
-                <span class="chapter-number">03</span>
-                <h2 class="chapter-title">CONNECT</h2>
-            </div>
-            <div class="chapter-content">
+            <div class="connect-container">
+                <div class="dial-up-window">
+                    <div class="dial-up-header">
+                        <img src="https://win98icons.alexmeub.com/icons/png/network_connection-0.png" alt="Connection">
+                        <span>Connect To Francis Amante</span>
+                        <button class="dial-close" aria-label="Close">×</button>
+                    </div>
+                    <div class="dial-up-body">
+                        <div class="dial-icon-large">
+                            <img src="https://win98icons.alexmeub.com/icons/png/modem-4.png" alt="Modem">
+                        </div>
+                        <div class="dial-form">
+                            <p>User name and password are required to log on.</p>
+
+                            <div class="dial-field">
+                                <label for="userName">User name:</label>
+                                <input type="text" id="userName" placeholder="Your Name">
+                            </div>
+
+                            <div class="dial-field">
+                                <label for="userPass">Password:</label>
+                                <input type="password" id="userPass" placeholder="Your Email (as password)">
+                            </div>
+
+                            <div class="dial-field">
+                                <label for="userMsg">Phone number:</label>
+                                <input type="text" id="userMsg" placeholder="Your Message">
+                            </div>
+
+                            <div class="dial-status-area" id="dialStatus">
+                                <div class="status-text">Ready to connect.</div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dial-up-footer">
+                        <button class="sys-btn" id="dialBtn">Dial</button>
+                        <button class="sys-btn">Cancel</button>
+                        <button class="sys-btn">Properties</button>
+                    </div>
+                </div>
                 <div class="connect-grid">
                     <a href="https://www.linkedin.com/in/francis-amante" target="_blank" class="connect-link">
                         <span class="link-arrow">↗</span>

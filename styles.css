@@ -1245,6 +1245,139 @@ p {
 }
 
 /* ===================================
+   CONNECT SECTION (DIAL-UP)
+   =================================== */
+
+#connect.chapter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #008080;
+    /* Teal background for consistency */
+}
+
+.dial-up-window {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    padding: 3px;
+    width: 450px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+    font-family: var(--font-sans);
+    color: #000;
+}
+
+.dial-up-header {
+    background: linear-gradient(90deg, #000080, #1084d0);
+    color: white;
+    padding: 4px 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.dial-up-header img {
+    width: 16px;
+    height: 16px;
+}
+
+.dial-close {
+    margin-left: auto;
+    width: 16px;
+    height: 14px;
+    background: #c0c0c0;
+    border: 1px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    font-size: 10px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #000;
+}
+
+.dial-up-body {
+    display: flex;
+    gap: 20px;
+    padding: 10px 20px;
+}
+
+.dial-icon-large img {
+    width: 48px;
+    height: 48px;
+}
+
+.dial-form {
+    flex-grow: 1;
+}
+
+.dial-form p {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.dial-field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.dial-field label {
+    width: 100px;
+    font-size: 0.9rem;
+}
+
+.dial-field input {
+    flex-grow: 1;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    padding: 4px;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.dial-status-area {
+    margin-top: 20px;
+    min-height: 50px;
+}
+
+.status-text {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.progress-bar-container {
+    height: 20px;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #fff;
+    padding: 2px;
+    display: none;
+    /* Hidden by default */
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: #000080;
+    width: 0%;
+    transition: width 0.2s;
+}
+
+.dial-up-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+/* ===================================
    CONNECT SECTION
    =================================== */
 
