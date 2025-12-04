@@ -184,20 +184,32 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.head.appendChild(style);
 
-    // 7. Status Bar Updates
-    function updateStatusBar() {
-        const timeElement = document.getElementById('currentTime');
-        if (timeElement) {
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            timeElement.textContent = `${hours}:${minutes}`;
+    // 7. Status Bar & Taskbar Updates
+    function updateTime() {
+        const now = new Date();
+        let hours = now.getHours();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const timeString = `${hours}:${minutes} ${ampm}`;
+
+        // Update Status Bar (if exists)
+        const statusBarTime = document.getElementById('currentTime');
+        if (statusBarTime) {
+            statusBarTime.textContent = `${String(now.getHours()).padStart(2, '0')}:${minutes}`;
+        }
+
+        // Update Taskbar Clock
+        const taskbarTime = document.getElementById('taskbarTime');
+        if (taskbarTime) {
+            taskbarTime.textContent = timeString;
         }
     }
 
     // Update time immediately and every minute
-    updateStatusBar();
-    setInterval(updateStatusBar, 60000);
+    updateTime();
+    setInterval(updateTime, 60000);
 
     // Update current section in status bar
     function updateSection(chapterId) {
