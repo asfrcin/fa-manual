@@ -524,11 +524,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     statusText.textContent = "Connection Established.";
 
                     // Construct Mailto Link
-                    const subject = `Portfolio Inquiry from ${userName}`;
-                    const body = `Name: ${userName}%0D%0AEmail: ${userPass}%0D%0A%0D%0AMessage:%0D%0A${userMsg}`;
-                    const mailtoLink = `mailto:contact@francisamante.com?subject=${encodeURIComponent(subject)}&body=${body}`; // No encoding needed for body as we manually formatted it, but let's be safe with user input if we were doing it properly. Actually simple string interpolation is safer here for the basic structure, but encodeURIComponent is better for the values.
-
-                    // Better construction:
                     const safeSubject = encodeURIComponent(`Portfolio Inquiry from ${userName}`);
                     const safeBody = encodeURIComponent(`Name: ${userName}\nEmail: ${userPass}\n\nMessage:\n${userMsg}`);
                     const finalMailto = `mailto:contact@francisamante.com?subject=${safeSubject}&body=${safeBody}`;
