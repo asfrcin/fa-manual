@@ -722,7 +722,7 @@ p {
     border: 2px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
     padding: 3px;
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
     font-family: var(--font-sans);
@@ -798,7 +798,7 @@ p {
     border: 2px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
     padding: 16px;
-    min-height: 300px;
+    min-height: 400px;
     position: relative;
     z-index: 5;
 }
