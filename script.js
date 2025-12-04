@@ -471,8 +471,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Open "My Computer" by default on load (if visible)
-    const expertiseSection = document.getElementById('expertise');
-    const observer = new IntersectionObserver((entries) => {
+    const windowManagerSection = document.getElementById('expertise');
+    const windowObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting && !document.querySelector('.window-sys-prop')) {
                 // Only open if not already open
@@ -481,5 +481,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.3 });
 
-    if (expertiseSection) observer.observe(expertiseSection);
+    if (windowManagerSection) windowObserver.observe(windowManagerSection);
 });
