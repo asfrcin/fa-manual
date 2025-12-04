@@ -714,8 +714,213 @@ p {
 }
 
 /* ===================================
-   EXPERTISE SECTION
+   EXPERTISE SECTION (DISK DEFRAG)
    =================================== */
+
+.defrag-window {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    padding: 2px;
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+    font-family: var(--font-sans);
+}
+
+.defrag-title-bar {
+    background: linear-gradient(90deg, #000080, #1084d0);
+    color: white;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.defrag-title-bar img {
+    width: 16px;
+    height: 16px;
+}
+
+.defrag-controls {
+    margin-left: auto;
+    display: flex;
+    gap: 2px;
+}
+
+.defrag-controls button {
+    background: #c0c0c0;
+    border: 1px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    width: 16px;
+    height: 14px;
+    font-size: 8px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+}
+
+.defrag-content {
+    padding: 12px;
+    color: #000;
+}
+
+.drive-info {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.drive-map-container {
+    background: #000;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    padding: 2px;
+    margin-bottom: 12px;
+    height: 200px;
+    overflow-y: auto;
+}
+
+.drive-map {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
+    padding: 2px;
+}
+
+.defrag-block {
+    width: 12px;
+    height: 16px;
+    background: #e0e0e0;
+    /* Free space */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: crosshair;
+    transition: opacity 0.1s;
+}
+
+.defrag-block:hover {
+    opacity: 0.8;
+    border-color: white;
+}
+
+/* Block Types */
+.defrag-block.type-optimized {
+    background: #0000ff;
+}
+
+/* IT - Blue */
+.defrag-block.type-fragmented {
+    background: #ff9900;
+}
+
+/* Creative - Orange */
+.defrag-block.type-system {
+    background: #00ff00;
+}
+
+/* Core - Green */
+.defrag-block.type-free {
+    background: #ffffff;
+}
+
+.defrag-block.type-reading {
+    background: #ff0000;
+}
+
+/* Animation cursor */
+
+.defrag-legend {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 12px;
+    font-size: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.legend-item .block {
+    width: 12px;
+    height: 12px;
+    border: 1px solid #808080;
+    display: inline-block;
+}
+
+.legend-item .block.type-optimized {
+    background: #0000ff;
+}
+
+.legend-item .block.type-fragmented {
+    background: #ff9900;
+}
+
+.legend-item .block.type-system {
+    background: #00ff00;
+}
+
+.legend-item .block.type-free {
+    background: #ffffff;
+}
+
+.sector-info-pane {
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #fff;
+    padding: 8px;
+    height: 60px;
+    margin-bottom: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    overflow: hidden;
+}
+
+.sector-header {
+    font-weight: bold;
+    margin-bottom: 4px;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 2px;
+}
+
+.defrag-progress-bar {
+    height: 20px;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #fff;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #000080, #1084d0);
+    width: 0%;
+    transition: width 0.2s;
+}
+
+/* Mobile Adjustments for Defrag */
+@media (max-width: 600px) {
+    .defrag-block {
+        width: 10px;
+        height: 14px;
+    }
+
+    .drive-map-container {
+        height: 150px;
+    }
+
+    .defrag-legend {
+        gap: 8px;
+    }
+}
 
 .expertise-item {
     border: 2px solid var(--border-color);

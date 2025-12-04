@@ -227,4 +227,123 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+
+    // ==========================================
+    // DISK DEFRAGMENTER LOGIC
+    // ==========================================
+    const driveMap = document.getElementById('driveMap');
+    const sectorDetails = document.getElementById('sectorDetails');
+    const defragStatus = document.getElementById('defragStatus');
+    const defragProgress = document.getElementById('defragProgress');
+
+    // Skills Data
+    const skills = [
+        // IT & Infrastructure (Blue)
+        { type: 'optimized', name: 'Wireless Connectivity (IEEE 802.11)', detail: 'Implemented last-mile connectivity for remote locations.' },
+        { type: 'optimized', name: 'MikroTik Routing', detail: 'Advanced configuration for optimized bandwidth management.' },
+        { type: 'optimized', name: 'Ubiquiti Networks', detail: 'Deployment of point-to-point and mesh network systems.' },
+        { type: 'optimized', name: 'Hardware Refurbishment', detail: 'Restoring legacy hardware for cost-effective deployment.' },
+        { type: 'optimized', name: 'System Administration', detail: 'Managing local ISP infrastructure and user databases.' },
+        { type: 'optimized', name: 'Network Diagnostics', detail: 'Troubleshooting physical and logical network layers.' },
+
+        // Creative (Orange)
+        { type: 'fragmented', name: 'Video Production', detail: 'End-to-end production using Premiere Pro and DaVinci Resolve.' },
+        { type: 'fragmented', name: 'Film Photography', detail: 'Analog workflow: Nikon EM, Minox, developing & scanning.' },
+        { type: 'fragmented', name: 'Digital Photography', detail: 'Event and portrait photography with Nikon ecosystem.' },
+        { type: 'fragmented', name: 'Visual Storytelling', detail: 'Translating technical concepts into human narratives.' },
+        { type: 'fragmented', name: 'Technical Writing', detail: 'Documentation and feasibility studies for telecom projects.' },
+
+        // Core (Green)
+        { type: 'system', name: 'Problem Solving', detail: 'Diagnosing root causes in complex technical systems.' },
+        { type: 'system', name: 'Strategic Planning', detail: 'Feasibility studies and infrastructure optimization.' },
+        { type: 'system', name: 'Adaptability', detail: 'Pivoting from hardware to ISP services to CS degree.' },
+        { type: 'system', name: 'Computer Science', detail: 'UofT: Algorithms, Data Structures, LLMs.' }
+    ];
+
+    // Generate Blocks
+    const totalBlocks = 250; // Total grid size
+    let blocksGenerated = false;
+
+    function initDefrag() {
+        if (blocksGenerated || !driveMap) return;
+
+        driveMap.innerHTML = '';
+
+        // Create an array with skills distributed
+        let blockArray = new Array(totalBlocks).fill({ type: 'free', name: 'Free Space', detail: 'Available for future learning.' });
+
+        // Distribute skills randomly but clustered
+        skills.forEach(skill => {
+            // Assign each skill to ~3-5 blocks to make them visible
+            const count = Math.floor(Math.random() * 3) + 3;
+            for (let i = 0; i < count; i++) {
+                // Find a random free spot
+                let index;
+                do {
+                    index = Math.floor(Math.random() * totalBlocks);
+                } while (blockArray[index].type !== 'free');
+
+                blockArray[index] = skill;
+            }
+        });
+
+        // Render Blocks
+        blockArray.forEach((data, index) => {
+            const block = document.createElement('div');
+            block.className = `defrag-block type-${data.type}`;
+            block.dataset.index = index;
+
+            // Hover Event
+            block.addEventListener('mouseenter', () => {
+                sectorDetails.textContent = `Sector ${index}: ${data.name} - ${data.detail}`;
+                sectorDetails.style.color = data.type === 'free' ? '#888' : '#000';
+            });
+
+            driveMap.appendChild(block);
+        });
+
+        blocksGenerated = true;
+        runDefragAnimation();
+    }
+
+    function runDefragAnimation() {
+        if (!defragStatus) return;
+
+        defragStatus.textContent = "Defragmenting...";
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += 1;
+            if (defragProgress) defragProgress.style.width = `${progress}%`;
+
+            // Randomly flash a "reading" block
+            const blocks = document.querySelectorAll('.defrag-block');
+            const randomBlock = blocks[Math.floor(Math.random() * blocks.length)];
+            const originalType = randomBlock.className;
+
+            randomBlock.className = 'defrag-block type-reading';
+            setTimeout(() => {
+                randomBlock.className = originalType;
+            }, 50);
+
+            if (progress >= 100) {
+                clearInterval(interval);
+                defragStatus.textContent = "Optimization Complete";
+                if (defragProgress) defragProgress.style.width = '100%';
+            }
+        }, 30);
+    }
+
+    // Trigger Defrag when visible
+    const defragSection = document.getElementById('expertise');
+    if (defragSection) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    initDefrag();
+                }
+            });
+        }, { threshold: 0.3 });
+
+        observer.observe(defragSection);
+    }
 });
