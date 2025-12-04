@@ -522,11 +522,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else if (progress >= 100) {
                     clearInterval(interval);
                     statusText.textContent = "Connection Established.";
+
+                    // Construct Mailto Link
+                    const subject = `Portfolio Inquiry from ${userName}`;
+                    const body = `Name: ${userName}%0D%0AEmail: ${userPass}%0D%0A%0D%0AMessage:%0D%0A${userMsg}`;
+                    const mailtoLink = `mailto:contact@francisamante.com?subject=${encodeURIComponent(subject)}&body=${body}`; // No encoding needed for body as we manually formatted it, but let's be safe with user input if we were doing it properly. Actually simple string interpolation is safer here for the basic structure, but encodeURIComponent is better for the values.
+
+                    // Better construction:
+                    const safeSubject = encodeURIComponent(`Portfolio Inquiry from ${userName}`);
+                    const safeBody = encodeURIComponent(`Name: ${userName}\nEmail: ${userPass}\n\nMessage:\n${userMsg}`);
+                    const finalMailto = `mailto:contact@francisamante.com?subject=${safeSubject}&body=${safeBody}`;
+
                     setTimeout(() => {
+                        // Open Mail Client
+                        window.location.href = finalMailto;
+
                         // Create Retro Message Box
                         const msgBox = document.createElement('div');
                         msgBox.className = 'window';
-                        // Inline styles for centering within the connect container
                         msgBox.style.position = 'absolute';
                         msgBox.style.zIndex = '1000';
                         msgBox.style.width = '300px';
@@ -545,25 +558,22 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                             <div class="window-content" style="text-align: center; padding: 20px; background: #c0c0c0; border: none;">
                                 <img src="https://win98icons.alexmeub.com/icons/png/msg_information-0.png" style="margin-bottom: 10px;">
-                                <p style="margin-bottom: 5px;"><strong>Connected to Francis Amante</strong></p>
-                                <p style="margin-bottom: 15px; font-size: 0.9rem;">Message sent successfully.</p>
+                                <p style="margin-bottom: 5px;"><strong>Data Transmitted</strong></p>
+                                <p style="margin-bottom: 15px; font-size: 0.9rem;">Opening your default email client to complete the transmission.</p>
                                 <button class="sys-btn close-msg-btn" style="width: 80px;">OK</button>
                             </div>
                         `;
 
-                        // Ensure container is positioned
                         const container = document.querySelector('.connect-container');
                         if (getComputedStyle(container).position === 'static') {
                             container.style.position = 'relative';
                         }
                         container.appendChild(msgBox);
 
-                        // Add close handlers
                         msgBox.querySelectorAll('.close-msg-btn').forEach(btn => {
                             btn.addEventListener('click', () => msgBox.remove());
                         });
 
-                        // Reset Form
                         dialBtn.disabled = false;
                         progressBarFill.style.width = '0%';
                         progressBarContainer.style.display = 'none';
