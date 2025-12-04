@@ -390,11 +390,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         <img src="https://win98icons.alexmeub.com/icons/png/users-1.png" style="width: 32px; height: 32px; margin-bottom: 5px;">
                         <div style="font-size: 0.8rem;">LinkedIn</div>
                     </div>
-                    <div class="hub-icon" onclick="window.open('/resume.pdf', '_blank')" style="cursor: pointer;">
+                    <div class="hub-icon" onclick="window.open('https://drive.google.com/file/d/1uEN-ndZNGDbQ13ZlBczmYxXWH_R--qg9/view?usp=sharing', '_blank')" style="cursor: pointer;">
                         <img src="https://win98icons.alexmeub.com/icons/png/script-0.png" style="width: 32px; height: 32px; margin-bottom: 5px;">
                         <div style="font-size: 0.8rem;">Resume</div>
                     </div>
-                    <div class="hub-icon" onclick="openWindow('email-client')" style="cursor: pointer;">
+                    <div class="hub-icon" id="openEmailClient" style="cursor: pointer;">
                         <img src="https://win98icons.alexmeub.com/icons/png/outlook_express-5.png" style="width: 32px; height: 32px; margin-bottom: 5px;">
                         <div style="font-size: 0.8rem;">Email Me</div>
                     </div>
@@ -504,6 +504,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // Initialize Tabs if SysProp
         if (config.type === 'sys-prop') {
             initTabs(win);
+        }
+
+        // Special handling for Connect Hub buttons
+        if (key === 'connect-hub') {
+            const emailBtn = win.querySelector('#openEmailClient');
+            if (emailBtn) {
+                emailBtn.addEventListener('click', () => openWindow('email-client'));
+            }
         }
     }
 
