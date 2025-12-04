@@ -56,35 +56,13 @@ body {
     -webkit-font-smoothing: auto;
     /* Disable smoothing for sharper, more pixelated look */
     overflow-x: hidden;
-
-    /* Grid paper background */
-    background-image:
-        repeating-linear-gradient(0deg, transparent, transparent 19px, var(--grid-line) 19px, var(--grid-line) 20px),
-        repeating-linear-gradient(90deg, transparent, transparent 19px, var(--grid-line) 19px, var(--grid-line) 20px);
-    background-size: 20px 20px;
 }
 
 /* ===================================
    GRID SYSTEM
    =================================== */
 
-.grid-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: var(--grid-gap);
-    padding: 0 var(--container-padding);
-    pointer-events: none;
-    z-index: 0;
-    max-width: 1440px;
-    margin: 0 auto;
-    left: 50%;
-    transform: translateX(-50%);
-}
+
 
 .col {
     border-right: 1px solid var(--grid-line);
