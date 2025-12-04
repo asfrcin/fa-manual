@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         'network': {
             title: 'Network Neighborhood',
-            icon: 'network_cool-0.png',
+            icon: 'world-0.png',
             type: 'explorer',
             width: '500px',
             height: '300px',
@@ -380,7 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         'connect-hub': {
             title: 'Connect Protocol',
-            icon: 'connection_cloud-0.png',
+            icon: 'modem-0.png',
             type: 'explorer',
             width: '400px',
             height: '300px',
