@@ -717,6 +717,20 @@ p {
    EXPERTISE SECTION (DESKTOP ENVIRONMENT)
    =================================== */
 
+#expertise.chapter {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    display: block;
+    max-width: none;
+}
+
 .desktop-environment {
     background-color: #008080;
     /* Classic Teal */
