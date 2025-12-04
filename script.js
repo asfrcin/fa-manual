@@ -526,7 +526,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Construct Mailto Link
                     const safeSubject = encodeURIComponent(`Portfolio Inquiry from ${userName}`);
                     const safeBody = encodeURIComponent(`Name: ${userName}\nEmail: ${userPass}\n\nMessage:\n${userMsg}`);
-                    const finalMailto = `mailto:contact@francisamante.com?subject=${safeSubject}&body=${safeBody}`;
+                    const finalMailto = `mailto:hello@francisamante.com?subject=${safeSubject}&body=${safeBody}`;
 
                     setTimeout(() => {
                         // Open Mail Client
