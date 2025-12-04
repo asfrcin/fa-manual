@@ -580,3 +580,115 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (windowManagerSection) windowObserver.observe(windowManagerSection);
 });
+
+// Global function for Dial-Up Logic (must be outside DOMContentLoaded to be accessible via onclick)
+window.initiateDial = function () {
+    // Since we can have multiple windows, we need to find the active dial-up window
+    // But for simplicity, let's query the document since only one should be open or active
+    // A better approach is to pass 'this' from the button, but let's try to find the inputs
+
+    const userNameInput = document.getElementById('userName');
+    const userPassInput = document.getElementById('userPass');
+    const userMsgInput = document.getElementById('userMsg');
+    const dialBtn = document.getElementById('dialBtn');
+
+    // Find the closest window to the button if possible, or just use the IDs
+    // The IDs are unique in the HTML string, so document.getElementById works 
+    // IF only one email client is open.
+
+    if (!userNameInput || !userPassInput || !userMsgInput) {
+        console.error("Dial inputs not found");
+        return;
+    }
+
+    const userName = userNameInput.value;
+    const userPass = userPassInput.value;
+    const userMsg = userMsgInput.value;
+
+    if (!userName || !userPass || !userMsg) {
+        alert('Please fill in all fields (Name, Email, Message).');
+        return;
+    }
+
+    // Find status elements within the same window context
+    const windowEl = dialBtn.closest('.window');
+    const statusText = windowEl.querySelector('.status-text');
+    const progressBarContainer = windowEl.querySelector('.progress-bar-container');
+    const progressBarFill = windowEl.querySelector('.progress-bar-fill');
+
+    // Start Dialing Sequence
+    dialBtn.disabled = true;
+    statusText.textContent = "Dialing...";
+    progressBarContainer.style.display = 'block';
+
+    // Simulation Steps
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += Math.random() * 10;
+        if (progress > 100) progress = 100;
+        progressBarFill.style.width = `${progress}%`;
+
+        if (progress > 30 && progress < 60) {
+            statusText.textContent = "Verifying email address...";
+        } else if (progress > 60 && progress < 90) {
+            statusText.textContent = "Sending data packets...";
+        } else if (progress >= 100) {
+            clearInterval(interval);
+            statusText.textContent = "Connection Established.";
+
+            // Construct Mailto Link
+            const safeSubject = encodeURIComponent(`Portfolio Inquiry from ${userName}`);
+            const safeBody = encodeURIComponent(`Name: ${userName}\nEmail: ${userPass}\n\nMessage:\n${userMsg}`);
+            const finalMailto = `mailto:hello@francisamante.com?subject=${safeSubject}&body=${safeBody}`;
+
+            setTimeout(() => {
+                // Open Mail Client
+                window.location.href = finalMailto;
+
+                // Create Retro Message Box
+                const msgBox = document.createElement('div');
+                msgBox.className = 'window';
+                msgBox.style.position = 'absolute';
+                msgBox.style.zIndex = '2000';
+                msgBox.style.width = '300px';
+                msgBox.style.left = '50%';
+                msgBox.style.top = '50%';
+                msgBox.style.transform = 'translate(-50%, -50%)';
+                msgBox.style.boxShadow = '4px 4px 10px rgba(0,0,0,0.5)';
+
+                msgBox.innerHTML = `
+                    <div class="window-title-bar">
+                        <img src="https://win98icons.alexmeub.com/icons/png/network_connection-0.png" alt="icon">
+                        <span>Connection Established</span>
+                        <div class="window-controls">
+                            <button class="window-btn close-msg-btn">×</button>
+                        </div>
+                    </div>
+                    <div class="window-content" style="text-align: center; padding: 20px; background: #c0c0c0; border: none;">
+                        <img src="https://win98icons.alexmeub.com/icons/png/msg_information-0.png" style="margin-bottom: 10px;">
+                        <p style="margin-bottom: 5px;"><strong>Data Transmitted</strong></p>
+                        <p style="margin-bottom: 15px; font-size: 0.9rem;">Opening your default email client to complete the transmission.</p>
+                        <button class="sys-btn close-msg-btn" style="width: 80px;">OK</button>
+                    </div>
+                `;
+
+                // Append to desktop environment
+                const desktop = document.getElementById('desktopEnv');
+                if (desktop) {
+                    desktop.appendChild(msgBox);
+                } else {
+                    document.body.appendChild(msgBox);
+                }
+
+                msgBox.querySelectorAll('.close-msg-btn').forEach(btn => {
+                    btn.addEventListener('click', () => msgBox.remove());
+                });
+
+                dialBtn.disabled = false;
+                progressBarFill.style.width = '0%';
+                progressBarContainer.style.display = 'none';
+                statusText.textContent = "Ready to connect.";
+            }, 500);
+        }
+    }, 200);
+};
