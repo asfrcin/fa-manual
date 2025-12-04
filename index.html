@@ -139,46 +139,110 @@
         <!-- CHAPTER 02: EXPERTISE -->
         <!-- CHAPTER 02: EXPERTISE -->
         <section id="expertise" class="chapter">
-            <div class="defrag-window">
-                <div class="defrag-title-bar">
-                    <img src="https://win98icons.alexmeub.com/icons/png/defrag-0.png" alt="icon">
-                    <span>Disk Defragmenter - (C:) Expertise</span>
-                    <div class="defrag-controls">
-                        <button aria-label="Minimize">_</button>
-                        <button aria-label="Maximize">□</button>
-                        <button aria-label="Close">×</button>
+            <div class="sys-prop-window">
+                <div class="sys-prop-title-bar">
+                    <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-4.png" alt="icon">
+                    <span>System Properties</span>
+                    <button class="sys-prop-close" aria-label="Close">×</button>
+                </div>
+
+                <div class="sys-prop-tabs">
+                    <button class="sys-tab active" data-tab="general">General</button>
+                    <button class="sys-tab" data-tab="hardware">Hardware</button>
+                    <button class="sys-tab" data-tab="performance">Performance</button>
+                </div>
+
+                <div class="sys-prop-content">
+                    <!-- Tab 1: General (Core) -->
+                    <div class="sys-pane active" id="general">
+                        <div class="sys-info-grid">
+                            <div class="sys-icon-large">
+                                <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-4.png"
+                                    alt="Computer">
+                            </div>
+                            <div class="sys-info-text">
+                                <p><strong>System:</strong></p>
+                                <p>Francis Amante v1.0</p>
+                                <p>Copyright © 2024</p>
+                                <br>
+                                <p><strong>Registered to:</strong></p>
+                                <p>Client / User</p>
+                                <p>Toronto, ON</p>
+                                <br>
+                                <p><strong>Computer:</strong></p>
+                                <p>UofT Computer Science</p>
+                                <p>32.0 GB RAM</p>
+                                <p>Strategic Planning</p>
+                                <p>Problem Solving</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: Hardware (IT) -->
+                    <div class="sys-pane" id="hardware">
+                        <div class="dev-mgr-list">
+                            <div class="dev-node">
+                                <span class="dev-icon">🖧</span>
+                                <strong>Network Adapters</strong>
+                                <ul>
+                                    <li>Wireless Connectivity (IEEE 802.11)</li>
+                                    <li>MikroTik Routing Systems</li>
+                                    <li>Ubiquiti Networks Infrastructure</li>
+                                </ul>
+                            </div>
+                            <div class="dev-node">
+                                <span class="dev-icon">💻</span>
+                                <strong>System Devices</strong>
+                                <ul>
+                                    <li>Hardware Refurbishment</li>
+                                    <li>System Administration</li>
+                                    <li>Network Diagnostics</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 3: Performance (Creative) -->
+                    <div class="sys-pane" id="performance">
+                        <div class="perf-settings">
+                            <fieldset>
+                                <legend>Graphics</legend>
+                                <div class="perf-row">
+                                    <img src="https://win98icons.alexmeub.com/icons/png/video_-0.png" alt="Video">
+                                    <div>
+                                        <strong>Video Production</strong>
+                                        <p>Premiere Pro, DaVinci Resolve</p>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Imaging Devices</legend>
+                                <div class="perf-row">
+                                    <img src="https://win98icons.alexmeub.com/icons/png/camera-2.png" alt="Camera">
+                                    <div>
+                                        <strong>Photography</strong>
+                                        <p>Analog (Nikon EM) & Digital</p>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Documentation</legend>
+                                <div class="perf-row">
+                                    <img src="https://win98icons.alexmeub.com/icons/png/notepad-5.png" alt="Text">
+                                    <div>
+                                        <strong>Technical Writing</strong>
+                                        <p>Visual Storytelling & Feasibility Studies</p>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
                     </div>
                 </div>
 
-                <div class="defrag-content">
-                    <div class="drive-info">
-                        <span>Drive C: (Physical Drive)</span>
-                        <span>Status: <span id="defragStatus">Analyzing...</span></span>
-                    </div>
-
-                    <div class="drive-map-container">
-                        <div class="drive-map" id="driveMap">
-                            <!-- Blocks generated by JS -->
-                        </div>
-                    </div>
-
-                    <div class="defrag-legend">
-                        <div class="legend-item"><span class="block type-optimized"></span> Optimized (IT & Infra)</div>
-                        <div class="legend-item"><span class="block type-fragmented"></span> Fragmented (Creative)</div>
-                        <div class="legend-item"><span class="block type-system"></span> System (Core)</div>
-                        <div class="legend-item"><span class="block type-free"></span> Free Space</div>
-                    </div>
-
-                    <div class="sector-info-pane">
-                        <div class="sector-header">Sector Information</div>
-                        <div class="sector-details" id="sectorDetails">
-                            Hover over a block to view sector data...
-                        </div>
-                    </div>
-
-                    <div class="defrag-progress-bar">
-                        <div class="progress-fill" id="defragProgress"></div>
-                    </div>
+                <div class="sys-prop-footer">
+                    <button class="sys-btn">OK</button>
+                    <button class="sys-btn">Cancel</button>
+                    <button class="sys-btn" disabled>Apply</button>
                 </div>
             </div>
         </section>
