@@ -1332,7 +1332,8 @@ p {
     font-size: 0.9rem;
 }
 
-.dial-field input {
+.dial-field input,
+.dial-field textarea {
     flex-grow: 1;
     border: 2px solid;
     border-color: #808080 #ffffff #ffffff #808080;
@@ -1340,6 +1341,8 @@ p {
     font-family: var(--font-sans);
     font-size: 0.9rem;
     outline: none;
+    resize: none;
+    /* Prevent resizing to break layout */
 }
 
 .dial-status-area {

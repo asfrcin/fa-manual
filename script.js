@@ -498,8 +498,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const userPass = document.getElementById('userPass').value;
             const userMsg = document.getElementById('userMsg').value;
 
-            if (!userName || !userPass) {
-                alert('User name and Password are required.');
+            if (!userName || !userPass || !userMsg) {
+                alert('Please fill in all fields (Name, Email, Message).');
                 return;
             }
 
@@ -516,9 +516,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 progressBarFill.style.width = `${progress}%`;
 
                 if (progress > 30 && progress < 60) {
-                    statusText.textContent = "Verifying user name and password...";
+                    statusText.textContent = "Verifying email address...";
                 } else if (progress > 60 && progress < 90) {
-                    statusText.textContent = "Registering your computer on the network...";
+                    statusText.textContent = "Sending data packets...";
                 } else if (progress >= 100) {
                     clearInterval(interval);
                     statusText.textContent = "Connection Established.";
