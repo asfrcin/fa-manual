@@ -241,28 +241,245 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================
-    // SYSTEM PROPERTIES LOGIC
+    // WINDOW MANAGER LOGIC
     // ==========================================
-    const sysTabs = document.querySelectorAll('.sys-tab');
-    const sysPanes = document.querySelectorAll('.sys-pane');
 
-    if (sysTabs.length > 0) {
-        sysTabs.forEach(tab => {
+    const desktopEnv = document.getElementById('desktopEnv');
+    const desktopIcons = document.querySelectorAll('.desktop-icon');
+    let zIndexCounter = 100;
+    let windowOffset = 0; // Stagger new windows
+
+    // Window Content Definitions
+    const windowContents = {
+        'computer': {
+            title: 'System Properties',
+            icon: 'computer_explorer-4.png',
+            type: 'sys-prop',
+            width: '600px',
+            height: '450px',
+            body: `
+                <div class="sys-prop-tabs">
+                    <button class="sys-tab active" data-tab="general">General</button>
+                    <button class="sys-tab" data-tab="hardware">Hardware</button>
+                    <button class="sys-tab" data-tab="performance">Performance</button>
+                </div>
+                <div class="sys-prop-content">
+                    <!-- Tab 1: General -->
+                    <div class="sys-pane active" id="general">
+                        <div class="sys-info-grid">
+                            <div class="sys-icon-large"><img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-4.png"></div>
+                            <div class="sys-info-text">
+                                <p><strong>System:</strong></p><p>Francis Amante</p><p>Copyright © 2024</p><br>
+                                <p><strong>Computer:</strong></p><p>UofT Computer Science</p><p>Strategic Planning</p><p>Problem Solving</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tab 2: Hardware -->
+                    <div class="sys-pane" id="hardware">
+                        <div class="dev-mgr-list">
+                            <div class="dev-node"><span class="dev-icon">🖧</span><strong>Network Adapters</strong><ul><li>Wireless Connectivity (IEEE 802.11)</li><li>MikroTik Routing Systems</li><li>Ubiquiti Networks Infrastructure</li></ul></div>
+                            <div class="dev-node"><span class="dev-icon">💻</span><strong>System Devices</strong><ul><li>Hardware Refurbishment</li><li>System Administration</li><li>Network Diagnostics</li></ul></div>
+                        </div>
+                    </div>
+                    <!-- Tab 3: Performance -->
+                    <div class="sys-pane" id="performance">
+                        <div class="perf-settings">
+                            <fieldset><legend>Graphics</legend><div class="perf-row"><img src="https://win98icons.alexmeub.com/icons/png/video_-0.png"><div><strong>Video Production</strong><p>Premiere Pro, DaVinci Resolve</p></div></div></fieldset>
+                            <fieldset><legend>Imaging Devices</legend><div class="perf-row"><img src="https://win98icons.alexmeub.com/icons/png/camera-2.png"><div><strong>Photography</strong><p>Analog (Nikon EM) & Digital</p></div></div></fieldset>
+                            <fieldset><legend>Documentation</legend><div class="perf-row"><img src="https://win98icons.alexmeub.com/icons/png/notepad-5.png"><div><strong>Technical Writing</strong><p>Visual Storytelling & Feasibility Studies</p></div></div></fieldset>
+                        </div>
+                    </div>
+                </div>
+                <div class="sys-prop-footer">
+                    <button class="sys-btn close-win-btn">OK</button>
+                    <button class="sys-btn close-win-btn">Cancel</button>
+                    <button class="sys-btn" disabled>Apply</button>
+                </div>
+            `
+        },
+        'network': {
+            title: 'Network Neighborhood',
+            icon: 'network_neighborhood-4.png',
+            type: 'explorer',
+            width: '500px',
+            height: '300px',
+            body: `
+                <div style="padding: 10px;">
+                    <p><strong>Network Connections:</strong></p>
+                    <ul style="list-style: none; padding-left: 10px; margin-top: 10px;">
+                        <li style="margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                            <img src="https://win98icons.alexmeub.com/icons/png/network_connection-0.png" width="16">
+                            <span><strong>Local ISP Infrastructure</strong><br><span style="font-size: 0.8rem; color: #666;">Designed routing for remote towns.</span></span>
+                        </li>
+                        <li style="margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                            <img src="https://win98icons.alexmeub.com/icons/png/network_connection-0.png" width="16">
+                            <span><strong>Mesh Networks</strong><br><span style="font-size: 0.8rem; color: #666;">Deployed Ubiquiti systems.</span></span>
+                        </li>
+                    </ul>
+                </div>
+            `
+        },
+        'documents': {
+            title: 'My Documents',
+            icon: 'directory_open_file_mydocs-4.png',
+            type: 'explorer',
+            width: '500px',
+            height: '300px',
+            body: `
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; padding: 10px;">
+                    <div style="text-align: center; width: 80px;">
+                        <img src="https://win98icons.alexmeub.com/icons/png/video_-0.png" width="32"><br>
+                        <span style="font-size: 0.8rem;">Film_Project.mp4</span>
+                    </div>
+                    <div style="text-align: center; width: 80px;">
+                        <img src="https://win98icons.alexmeub.com/icons/png/camera-2.png" width="32"><br>
+                        <span style="font-size: 0.8rem;">Photos.zip</span>
+                    </div>
+                    <div style="text-align: center; width: 80px;">
+                        <img src="https://win98icons.alexmeub.com/icons/png/notepad-5.png" width="32"><br>
+                        <span style="font-size: 0.8rem;">Thesis.txt</span>
+                    </div>
+                </div>
+            `
+        },
+        'recycle': {
+            title: 'Recycle Bin',
+            icon: 'recycle_bin_empty-4.png',
+            type: 'explorer',
+            width: '400px',
+            height: '250px',
+            body: `
+                <div style="padding: 10px;">
+                    <p><strong>Deleted Items:</strong></p>
+                    <ul style="list-style: none; padding-left: 10px; margin-top: 10px;">
+                        <li style="margin-bottom: 5px; color: #888;">Adobe Flash Player</li>
+                        <li style="margin-bottom: 5px; color: #888;">Internet Explorer 6</li>
+                        <li style="margin-bottom: 5px; color: #888;">My Myspace Page</li>
+                    </ul>
+                </div>
+            `
+        }
+    };
+
+    function openWindow(key) {
+        const config = windowContents[key];
+        if (!config) return;
+
+        // Create Window DOM
+        const win = document.createElement('div');
+        win.className = `window window-${config.type} active`;
+        win.style.width = config.width;
+        win.style.height = config.height;
+        win.style.left = `${50 + windowOffset}px`;
+        win.style.top = `${50 + windowOffset}px`;
+        win.style.zIndex = ++zIndexCounter;
+
+        // Stagger next window
+        windowOffset = (windowOffset + 30) % 150;
+
+        win.innerHTML = `
+            <div class="window-title-bar">
+                <img src="https://win98icons.alexmeub.com/icons/png/${config.icon}" alt="icon">
+                <span>${config.title}</span>
+                <div class="window-controls">
+                    <button class="window-btn close-btn">×</button>
+                </div>
+            </div>
+            <div class="window-content">
+                ${config.body}
+            </div>
+        `;
+
+        // Append to Desktop
+        desktopEnv.appendChild(win);
+
+        // Add Event Listeners
+        makeDraggable(win);
+
+        // Close Button
+        const closeBtns = win.querySelectorAll('.close-btn, .close-win-btn');
+        closeBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent drag start
+                win.remove();
+            });
+        });
+
+        // Bring to front on click
+        win.addEventListener('mousedown', () => {
+            win.style.zIndex = ++zIndexCounter;
+            document.querySelectorAll('.window').forEach(w => w.classList.remove('active'));
+            win.classList.add('active');
+        });
+
+        // Initialize Tabs if SysProp
+        if (config.type === 'sys-prop') {
+            initTabs(win);
+        }
+    }
+
+    function makeDraggable(el) {
+        const titleBar = el.querySelector('.window-title-bar');
+        let isDragging = false;
+        let startX, startY, initialLeft, initialTop;
+
+        titleBar.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            initialLeft = el.offsetLeft;
+            initialTop = el.offsetTop;
+            el.style.zIndex = ++zIndexCounter; // Bring to front
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            const dx = e.clientX - startX;
+            const dy = e.clientY - startY;
+            el.style.left = `${initialLeft + dx}px`;
+            el.style.top = `${initialTop + dy}px`;
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+    }
+
+    function initTabs(win) {
+        const tabs = win.querySelectorAll('.sys-tab');
+        const panes = win.querySelectorAll('.sys-pane');
+
+        tabs.forEach(tab => {
             tab.addEventListener('click', () => {
-                // Remove active class from all tabs and panes
-                sysTabs.forEach(t => t.classList.remove('active'));
-                sysPanes.forEach(p => p.classList.remove('active'));
+                tabs.forEach(t => t.classList.remove('active'));
+                panes.forEach(p => p.classList.remove('active'));
 
-                // Add active class to clicked tab
                 tab.classList.add('active');
-
-                // Show corresponding pane
-                const tabId = tab.getAttribute('data-tab');
-                const pane = document.getElementById(tabId);
-                if (pane) {
-                    pane.classList.add('active');
-                }
+                const paneId = tab.getAttribute('data-tab');
+                const pane = win.querySelector(`#${paneId}`);
+                if (pane) pane.classList.add('active');
             });
         });
     }
+
+    // Desktop Icon Click Handlers
+    desktopIcons.forEach(icon => {
+        icon.addEventListener('click', () => {
+            const key = icon.getAttribute('data-window');
+            openWindow(key);
+        });
+    });
+
+    // Open "My Computer" by default on load (if visible)
+    const expertiseSection = document.getElementById('expertise');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !document.querySelector('.window-sys-prop')) {
+                // Only open if not already open
+                setTimeout(() => openWindow('computer'), 500);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    if (expertiseSection) observer.observe(expertiseSection);
 });

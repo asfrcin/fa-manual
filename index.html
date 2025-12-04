@@ -139,128 +139,29 @@
         <!-- CHAPTER 02: EXPERTISE -->
         <!-- CHAPTER 02: EXPERTISE -->
         <section id="expertise" class="chapter">
-            <div class="desktop-environment">
+            <div class="desktop-environment" id="desktopEnv">
                 <div class="desktop-icons">
-                    <div class="desktop-icon">
+                    <div class="desktop-icon" data-window="computer">
                         <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-4.png" alt="My Computer">
                         <span>My Computer</span>
                     </div>
-                    <div class="desktop-icon">
-                        <img src="https://win98icons.alexmeub.com/icons/png/recycle_bin_empty-4.png" alt="Recycle Bin">
-                        <span>Recycle Bin</span>
-                    </div>
-                    <div class="desktop-icon">
+                    <div class="desktop-icon" data-window="network">
                         <img src="https://win98icons.alexmeub.com/icons/png/network_neighborhood-4.png"
                             alt="Network Neighborhood">
                         <span>Network Neighborhood</span>
                     </div>
-                </div>
-
-                <div class="sys-prop-window">
-                    <div class="sys-prop-title-bar">
-                        <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-4.png" alt="icon">
-                        <span>System Properties</span>
-                        <button class="sys-prop-close" aria-label="Close">×</button>
+                    <div class="desktop-icon" data-window="documents">
+                        <img src="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs-4.png"
+                            alt="My Documents">
+                        <span>My Documents</span>
                     </div>
-
-                    <div class="sys-prop-tabs">
-                        <button class="sys-tab active" data-tab="general">General</button>
-                        <button class="sys-tab" data-tab="hardware">Hardware</button>
-                        <button class="sys-tab" data-tab="performance">Performance</button>
-                    </div>
-
-                    <div class="sys-prop-content">
-                        <!-- Tab 1: General (Core) -->
-                        <div class="sys-pane active" id="general">
-                            <div class="sys-info-grid">
-                                <div class="sys-icon-large">
-                                    <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-4.png"
-                                        alt="Computer">
-                                </div>
-                                <div class="sys-info-text">
-                                    <p><strong>System:</strong></p>
-                                    <p>Francis Amante</p>
-                                    <p>Copyright © 2024</p>
-                                    <br>
-                                    <p><strong>Registered to:</strong></p>
-                                    <p>Client / User</p>
-                                    <p>Toronto, ON</p>
-                                    <br>
-                                    <p><strong>Computer:</strong></p>
-                                    <p>UofT Computer Science</p>
-                                    <p>Strategic Planning</p>
-                                    <p>Problem Solving</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Tab 2: Hardware (IT) -->
-                        <div class="sys-pane" id="hardware">
-                            <div class="dev-mgr-list">
-                                <div class="dev-node">
-                                    <span class="dev-icon">🖧</span>
-                                    <strong>Network Adapters</strong>
-                                    <ul>
-                                        <li>Wireless Connectivity (IEEE 802.11)</li>
-                                        <li>MikroTik Routing Systems</li>
-                                        <li>Ubiquiti Networks Infrastructure</li>
-                                    </ul>
-                                </div>
-                                <div class="dev-node">
-                                    <span class="dev-icon">💻</span>
-                                    <strong>System Devices</strong>
-                                    <ul>
-                                        <li>Hardware Refurbishment</li>
-                                        <li>System Administration</li>
-                                        <li>Network Diagnostics</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Tab 3: Performance (Creative) -->
-                        <div class="sys-pane" id="performance">
-                            <div class="perf-settings">
-                                <fieldset>
-                                    <legend>Graphics</legend>
-                                    <div class="perf-row">
-                                        <img src="https://win98icons.alexmeub.com/icons/png/video_-0.png" alt="Video">
-                                        <div>
-                                            <strong>Video Production</strong>
-                                            <p>Premiere Pro, DaVinci Resolve</p>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                                <fieldset>
-                                    <legend>Imaging Devices</legend>
-                                    <div class="perf-row">
-                                        <img src="https://win98icons.alexmeub.com/icons/png/camera-2.png" alt="Camera">
-                                        <div>
-                                            <strong>Photography</strong>
-                                            <p>Analog (Nikon EM) & Digital</p>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                                <fieldset>
-                                    <legend>Documentation</legend>
-                                    <div class="perf-row">
-                                        <img src="https://win98icons.alexmeub.com/icons/png/notepad-5.png" alt="Text">
-                                        <div>
-                                            <strong>Technical Writing</strong>
-                                            <p>Visual Storytelling & Feasibility Studies</p>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="sys-prop-footer">
-                        <button class="sys-btn">OK</button>
-                        <button class="sys-btn">Cancel</button>
-                        <button class="sys-btn" disabled>Apply</button>
+                    <div class="desktop-icon" data-window="recycle">
+                        <img src="https://win98icons.alexmeub.com/icons/png/recycle_bin_empty-4.png" alt="Recycle Bin">
+                        <span>Recycle Bin</span>
                     </div>
                 </div>
+
+                <!-- Windows will be injected here by JS -->
 
                 <div class="taskbar">
                     <button class="start-btn">

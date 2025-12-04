@@ -852,16 +852,97 @@ p {
    EXPERTISE SECTION (SYSTEM PROPERTIES)
    =================================== */
 
-.sys-prop-window {
+/* Window Manager */
+.window {
+    position: absolute;
     background: #c0c0c0;
     border: 2px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
     padding: 3px;
-    max-width: 800px;
-    margin: 0 auto;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
     font-family: var(--font-sans);
     color: #000;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.window.active {
+    z-index: 50;
+}
+
+.window-title-bar {
+    background: linear-gradient(90deg, #808080, #b0b0b0);
+    /* Inactive gray by default */
+    color: #c0c0c0;
+    padding: 4px 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+    cursor: default;
+}
+
+.window.active .window-title-bar {
+    background: linear-gradient(90deg, #000080, #1084d0);
+    /* Active blue */
+    color: white;
+}
+
+.window-title-bar img {
+    width: 16px;
+    height: 16px;
+}
+
+.window-controls {
+    margin-left: auto;
+    display: flex;
+    gap: 2px;
+}
+
+.window-btn {
+    width: 16px;
+    height: 14px;
+    background: #c0c0c0;
+    border: 1px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    font-size: 10px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #000;
+}
+
+.window-btn:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+    transform: translate(1px, 1px);
+}
+
+.window-content {
+    padding: 12px;
+    background: #fff;
+    /* Default white background for content like Explorer */
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    flex-grow: 1;
+    overflow: auto;
+}
+
+/* Specific Window Types */
+.window-sys-prop .window-content {
+    background: #c0c0c0;
+    /* System properties stays gray */
+    border: none;
+    padding: 0;
+}
+
+.window-explorer .window-content {
+    background: #fff;
+    min-height: 200px;
 }
 
 .sys-prop-title-bar {
